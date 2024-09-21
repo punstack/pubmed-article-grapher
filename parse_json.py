@@ -7,7 +7,7 @@ def current_article(data):
 
     curr_article = {
         'title': document['passages'][0]['text'],
-        'document_id': document['id'],
+        'id': document['id'],
         'authors': [],
         'label': "Article"
     }
@@ -28,7 +28,7 @@ def get_references(data):
         if infons.get('section_type') == "REF" and infons.get('type') == 'ref':
             reference = {
                 'title': passage.get('text'),
-                'document_id': infons.get('pub-id_pmid'),
+                'id': infons.get('pub-id_pmid'),
                 'authors': [],
                 'label': {"Article", "Reference"}
             }
@@ -54,17 +54,9 @@ def extract_info(file_name:str):
 
     info = {
         'title': curr_article['title'],
-        'id': curr_article['document_id'],
+        'id': curr_article['id'],
         'authors': curr_article['authors'],
         'ref': references
     }
 
     return info
-
-if __name__ == "__main__":
-    file_name = 'pubmed_articles/PMC000XXXXX_json_unicode/PMC100320.xml'
-    info = extract_info(file_name)
-    #print(info['ref'])
-    file_name2 = 'pubmed_articles/PMC105XXXXX_json_unicode/PMC10500013.xml'
-    info2 = extract_info(file_name2)
-    print(info2['title'])
