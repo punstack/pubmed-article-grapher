@@ -1,1 +1,4 @@
 .venv/
+pubmed_articles/
+__pycache__/
+*.pyc
